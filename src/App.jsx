@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Header from "./components/Header"
 import TodoCreate from "./components/TodoCreate"
 import TodoList from "./components/TodoList"
@@ -15,6 +15,10 @@ const initialStateTodo =[
 const App= () => {
   const [todos, setTodo] = useState(initialStateTodo)
   const [filtro, setFiltro] = useState('all')
+
+  useEffect(()=>{
+    localStorage.setItem('todos', JSON.stringify(todos))
+  },[todos])
   
   const createTodo=(title)=>{
     const newTodo = {
@@ -57,14 +61,16 @@ const App= () => {
 
   return (
     <div className="bg-[url('./assets/images/bg-mobile-light.jpg')]
-                    dark:bg-[url('./assets/images/bg-mobile-dark.jpg')] 
+                    dark:bg-[url('./assets/images/bg-mobile-dark.jpg')]
+                    md:bg-[url('./assets/images/bg-desktop-light.jpg')]
+                    md:dark:bg-[url('./assets/images/bg-desktop-dark.jpg')]
                     bg-no-repeat 
                     bg-contain 
                     min-h-screen 
                     bg-gray-300
                     dark:bg-gray-600">
       <Header/>                      
-      <main className="container mx-auto px-4">
+      <main className="container mx-auto px-4 md:max-w-xl">
         <TodoCreate createTodo={createTodo}/>
         <TodoList todos={filterTodos()} removeTodo={removeTodo} updateTodo={updateTodo}/>
         <TodoComputed cantidad={ComputedItemsLeft} clearComplete={clearComplete}/>

@@ -21,7 +21,9 @@ const TodoCreate = ({createTodo}) => {
                         py-4
                         px-4
                         mt-8
-                        dark:bg-gray-800"
+                        dark:bg-gray-800
+                        transition-all 
+                        duration-1000"
                 onSubmit={handleSubmit}>
           <span className="rounded-full 
                             border-2
@@ -35,6 +37,8 @@ const TodoCreate = ({createTodo}) => {
           <input 
             className="w-full
                     dark:bg-gray-800
+                      transition-all 
+                      duration-1000
                       text-gray-400
                       outline-none"
             type="text"
